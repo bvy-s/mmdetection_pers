@@ -44,7 +44,7 @@ train_dataloader = dict(
         type=dataset_type,
         data_root=data_root,
         ann_file='annotations/voc07_train.json',
-        data_prefix=dict(img='trainval/'),
+        data_prefix=dict(img='../voc/VOCtrainval/VOCdevkit/'),
         filter_cfg=dict(filter_empty_gt=True, min_size=32),
         pipeline=train_pipeline,
         backend_args=backend_args))
@@ -58,7 +58,7 @@ val_dataloader = dict(
         type=dataset_type,
         data_root=data_root,
         ann_file='annotations/voc07_train.json',
-        data_prefix=dict(img='trainval/'),
+        data_prefix=dict(img='../voc/VOCtrainval/VOCdevkit/'),
         test_mode=True,
         pipeline=test_pipeline,
         backend_args=backend_args))
