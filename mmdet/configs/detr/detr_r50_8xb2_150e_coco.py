@@ -89,7 +89,7 @@ model = dict(
     positional_encoding=dict(num_feats=128, normalize=True),
     bbox_head=dict(
         type=DETRHead,
-        num_classes=80,
+        num_classes=20,
         embed_dims=256,
         loss_cls=dict(
             type=CrossEntropyLoss,
@@ -154,13 +154,13 @@ train_dataloader.update(dataset=dict(pipeline=train_pipeline))
 # optimizer
 optim_wrapper = dict(
     type=OptimWrapper,
-    optimizer=dict(type=AdamW, lr=0.0001, weight_decay=0.0001),
+    optimizer=dict(type=AdamW, lr=0.001, weight_decay=0.0001),
     clip_grad=dict(max_norm=0.1, norm_type=2),
     paramwise_cfg=dict(
         custom_keys={'backbone': dict(lr_mult=0.1, decay_mult=1.0)}))
 
 # learning policy
-max_epochs = 150
+max_epochs = 10
 train_cfg = dict(
     type=EpochBasedTrainLoop, max_epochs=max_epochs, val_interval=1)
 val_cfg = dict(type=ValLoop)
